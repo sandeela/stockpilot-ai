@@ -1,13 +1,7 @@
-# Deployment and testing checklist
-
-- [ ] Deploy `stockpilot-worker.js` on Cloudflare Workers.
-- [ ] Open the public Worker URL (not local index.html).
-- [ ] Verify default EUR 20,000 / 12 Months / Both / Both.
-- [ ] Click Find my investment opportunities. Check at least one recent price/date appears.
-- [ ] Confirm top ETF/share cards, affordable units, and scenario values.
-- [ ] Expand Explore market intelligence and check historical trend + news links.
-- [ ] Check USA/Europe and Shares/ETFs filters.
-- [ ] Check USD/PKR conversion with actual FX data.
-- [ ] Check no market-data setup or CSV request appears to the user.
-- [ ] Confirm no result is fabricated when upstream prices are unavailable.
-- [ ] Only then submit public GitHub repo and DEV.to post.
+# Quick deployment
+1. Open Cloudflare Dashboard > Workers & Pages > stockpilot-ai > Edit code.
+2. Replace the code with **stockpilot-worker.js** and deploy.
+3. Open the public site; confirm TensorFlow.js loads and AI results/validation appear after clicking Find AI-ranked investment candidates.
+4. If the site reports TensorFlow.js cannot load, verify access to cdn.jsdelivr.net. Do not claim ML is working until tested.
+5. Upload updated project files to GitHub; tag v1.3.0.
+6. Submit to DEV using the Week 3 official template before the deadline; include both demo and repo links.
