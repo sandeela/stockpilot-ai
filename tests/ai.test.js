@@ -1,0 +1,16 @@
+const assert = require('node:assert/strict');
+const {mlFeatures,mlSamples,knnProbability,trainOpenSourceML,days,investmentCalc} = require('../app.js');
+const prices=Array.from({length:1100},(_,i)=>100*Math.exp(i*0.0003 + Math.sin(i/17)*0.03 + Math.cos(i/9)*0.014));
+assert.equal(mlFeatures(prices,49),null);
+assert.equal(mlFeatures(prices,1099).length,3);
+assert.ok(mlSamples(prices).length>100);
+assert.equal(knnProbability([{x:[0,0,0],y:1},{x:[5,5,5],y:0}],[0,0,0],1),1);
+const m=trainOpenSourceML(prices);
+assert.equal(m.available,true);
+assert.ok(m.probability>=0&&m.probability<=1);
+assert.ok(m.accuracy>=0&&m.accuracy<=1);
+assert.ok(m.baseline>=0.5&&m.baseline<=1);
+assert.equal(days(5,'Days'),5);
+const c=investmentCalc({last:130,outlook:{annual:.06}},100,'EUR',{rate:1},12,'Months');
+assert.equal(c.qty,0); assert.equal(c.cash,100);
+console.log('PASS: open-source ML training, inference, chronological holdout, baseline, date conversion and affordability');
